@@ -4,13 +4,30 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
-    int credits = ScoreManager.instance.score;
-
     public void BuyOneLife()
     {
-        if (credits >= 750)
+        if (ScoreManager.instance.score >= 750)
         {
+            PlayerHealth.health += 1;
+            ScoreManager.instance.score -= 750;
+        }
+    }
 
+    public void FullLives()
+    {
+        if (ScoreManager.instance.score >= 1500)
+        {
+            PlayerHealth.health = 3;
+            ScoreManager.instance.score -= 1500;
+        }
+    }
+
+    public void Faster()
+    {
+        if (ScoreManager.instance.score >= 500)
+        {
+            PlayerController.speed += 0.5f;
+            ScoreManager.instance.score -= 500;
         }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-    static float health = 3;
+    public static float health = 3;
 
     public GameObject healthImage3;
     public GameObject healthImage2;
