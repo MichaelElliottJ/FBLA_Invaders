@@ -6,10 +6,10 @@ public class ShopManager : MonoBehaviour
 {
     public void BuyOneLife()
     {
-        if (ScoreManager.instance.score >= 750)
+        if (ScoreManager.instance.score >= 1000)
         {
             PlayerHealth.health += 1;
-            ScoreManager.instance.score -= 750;
+            ScoreManager.instance.score -= 1000;
         }
     }
 
