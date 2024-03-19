@@ -39,9 +39,19 @@ public class PlayerHealth : MonoBehaviour
             healthImage1.SetActive(true);
         } else if (health == 2)
         {
-            healthImage3.SetActive(true);
+            healthImage3.SetActive(false);
             healthImage2.SetActive(true);
             healthImage1.SetActive(true);
+        } else if (health == 1)
+        {
+            healthImage3.SetActive(false);
+            healthImage2.SetActive(false);
+            healthImage1.SetActive(true);
+        } else if (health == 0)
+        {
+            healthImage3.SetActive(false);
+            healthImage2.SetActive(false);
+            healthImage1.SetActive(false);
         }
     }
 }
