@@ -9,14 +9,9 @@ public class Enemy : MonoBehaviour
 
     public float speed;
 
-    bool canShoot = false;
-
     private void Update()
     {
-        this.transform.position += Vector3.down * speed * Time.deltaTime;
-
-        if (canShoot)
-            StartCoroutine("Shoot");
+        this.transform.position += Vector3.down * speed * Time.deltaTime;   
     }
 
     void FireBullet()
@@ -30,20 +25,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    IEnumerator Shoot()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(Random.Range(1f, 4f));
-            FireBullet();
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Start")
         {
-            canShoot = true;
+            InvokeRepeating("FireBullet", 0f, 1f);
         }
     }
 }

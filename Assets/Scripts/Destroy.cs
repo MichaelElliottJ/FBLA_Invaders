@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Destroy : MonoBehaviour
 {
-    void Awake()
+    void Start()
     {
-        StartCoroutine("DeleteGameObj");
+        StartCoroutine("DestroyThis");
     }
-    
-    IEnumerator DeleteGameObj()
+
+    IEnumerator DestroyThis()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
         Destroy(this);
     }
 }

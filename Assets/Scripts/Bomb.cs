@@ -6,7 +6,7 @@ public class Bomb : MonoBehaviour
 {
     public float speed;
 
-    public GameObject explosionAnim;
+    public GameObject explosion;
 
     void Update()
     {
@@ -17,7 +17,7 @@ public class Bomb : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            Instantiate(explosionAnim, transform.position, Quaternion.identity);
+            Instantiate(explosion, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
