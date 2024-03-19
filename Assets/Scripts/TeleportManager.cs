@@ -24,7 +24,7 @@ public class TeleportManager : MonoBehaviour
     public void GoToLevelTwo()
     {
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(3);
     }
 
     public void GoBack()

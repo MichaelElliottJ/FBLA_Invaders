@@ -28,6 +28,7 @@ public class ShopManager : MonoBehaviour
         {
             PlayerController.speed += 0.5f;
             ScoreManager.instance.score -= 500;
+            Debug.Log(PlayerController.speed);
         }
     }
 }
