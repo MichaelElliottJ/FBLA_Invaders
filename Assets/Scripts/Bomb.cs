@@ -8,6 +8,8 @@ public class Bomb : MonoBehaviour
 
     public GameObject explosion;
 
+    public int destroyScore;
+
     void Update()
     {
         this.transform.position += Vector3.down * speed * Time.deltaTime;
@@ -18,6 +20,7 @@ public class Bomb : MonoBehaviour
         if (collision.gameObject.tag == "Bullet")
         {
             Instantiate(explosion, transform.position, Quaternion.identity);
+            ScoreManager.instance.score += destroyScore;
             Destroy(gameObject);
         }
     }

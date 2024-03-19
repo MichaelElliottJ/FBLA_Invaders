@@ -8,36 +8,44 @@ public class PlayerController : MonoBehaviour
 
     public GameObject fire;
 
-    public float speed = 5.0f;
+    public static float speed = 5.0f;
 
     private bool isProjectileActive;
 
+    public bool canMove = true;
+
     private void Update()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (canMove)
         {
-            this.transform.position += Vector3.left * speed * Time.deltaTime;
-            fire.SetActive(false);
-        } else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            this.transform.position += Vector3.right * speed * Time.deltaTime;
-            fire.SetActive(false);
-        } else if (Input.GetKey(KeyCode.UpArrow))
-        {
-            this.transform.position += Vector3.up * speed * Time.deltaTime;
-            fire.SetActive(true);
-        } else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            this.transform.position += Vector3.down * speed * Time.deltaTime;
-            fire.SetActive(false);
-        }
-        else
-        {
-            fire.SetActive(false);
-        }
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                this.transform.position += Vector3.left * speed * Time.deltaTime;
+                fire.SetActive(false);
+            }
+            else if (Input.GetKey(KeyCode.RightArrow))
+            {
+                this.transform.position += Vector3.right * speed * Time.deltaTime;
+                fire.SetActive(false);
+            }
+            else if (Input.GetKey(KeyCode.UpArrow))
+            {
+                this.transform.position += Vector3.up * speed * Time.deltaTime;
+                fire.SetActive(true);
+            }
+            else if (Input.GetKey(KeyCode.DownArrow))
+            {
+                this.transform.position += Vector3.down * speed * Time.deltaTime;
+                fire.SetActive(false);
+            }
+            else
+            {
+                fire.SetActive(false);
+            }
 
-        if (Input.GetKey(KeyCode.Space))
-            Shoot();
+            if (Input.GetKey(KeyCode.Space))
+                Shoot();
+        }
     }
 
     private void Shoot()

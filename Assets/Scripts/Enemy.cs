@@ -6,8 +6,11 @@ public class Enemy : MonoBehaviour
 {
     public GameObject player;
     public GameObject enemyBullet;
+    public GameObject explosion;
 
     public float speed;
+
+    public int destroyScore;
 
     private void Update()
     {
@@ -30,6 +33,13 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "Start")
         {
             InvokeRepeating("FireBullet", 0f, 1f);
+        }
+
+        if (collision.gameObject.tag == "Bullet")
+        {
+            Instantiate(explosion, transform.position, Quaternion.identity);
+            ScoreManager.instance.score += destroyScore;
+            Destroy(gameObject);
         }
     }
 }

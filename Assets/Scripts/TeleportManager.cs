@@ -17,7 +17,14 @@ public class TeleportManager : MonoBehaviour
 
     public void GoToLevelOne()
     {
+        ScoreManager.instance.score = 0;
         SceneManager.LoadScene(3);
+    }
+
+    public void GoToLevelTwo()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene(4);
     }
 
     public void GoBack()
