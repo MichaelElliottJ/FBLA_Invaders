@@ -22,11 +22,12 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
-        if (health == 3)
+        if (health >= 3)
         {
             healthImage3.SetActive(true);
             healthImage2.SetActive(true);
             healthImage1.SetActive(true);
+            health = 3;
         }
         else if (health == 2)
         {
@@ -42,7 +43,7 @@ public class PlayerHealth : MonoBehaviour
         }
         else if (health <= 0)
         {
-            SceneManager.LoadScene(7);
+            SceneManager.LoadScene(6);
             health = 3;
         }
     }

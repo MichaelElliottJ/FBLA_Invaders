@@ -5,14 +5,20 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Projectile bullet;
+    public Ultimate ult;
 
     public GameObject fire;
+
+    public static int shotsFired;
 
     public static float speed = 5.0f;
 
     private bool isProjectileActive;
 
     public bool canMove = true;
+
+    public static bool moveUnlocked = false;
+    bool canUseMove = false;
 
     private void Update()
     {
@@ -44,7 +50,25 @@ public class PlayerController : MonoBehaviour
             }
 
             if (Input.GetKey(KeyCode.Space))
+            {
                 Shoot();
+            }
+
+            if (shotsFired >= 20)
+            {
+                canUseMove = true;
+                Debug.Log("faals");
+            }
+
+            if (Input.GetKey(KeyCode.V))
+            {
+                if (moveUnlocked && canUseMove)
+                {
+                    UltimateMove();
+                    canUseMove = false;
+                    shotsFired = 0;
+                }
+            }
         }
     }
 
@@ -54,6 +78,16 @@ public class PlayerController : MonoBehaviour
         {
             Projectile projectile = Instantiate(this.bullet, this.transform.position, Quaternion.identity);
             projectile.destroyed += LaserDestroyed;
+            isProjectileActive = true;
+        }
+    }
+
+    private void UltimateMove()
+    {
+        if (!isProjectileActive)
+        {
+            Ultimate ultimate = Instantiate(this.ult, this.transform.position, Quaternion.identity);
+            ultimate.destroyed += LaserDestroyed;
             isProjectileActive = true;
         }
     }

@@ -10,6 +10,7 @@ public class ShopManager : MonoBehaviour
         {
             PlayerHealth.health += 1;
             ScoreManager.instance.score -= 1000;
+            Debug.Log(PlayerHealth.health);
         }
     }
 
@@ -29,6 +30,15 @@ public class ShopManager : MonoBehaviour
             PlayerController.speed += 0.5f;
             ScoreManager.instance.score -= 500;
             Debug.Log(PlayerController.speed);
+        }
+    }
+
+    public void BuyUltimate()
+    {
+        if (ScoreManager.instance.score >= 2000)
+        {
+            PlayerController.moveUnlocked = true;
+            ScoreManager.instance.score -= 2000;
         }
     }
 }

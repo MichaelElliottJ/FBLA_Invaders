@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Ultimate : MonoBehaviour
 {
     public Vector3 direction;
 
@@ -21,9 +21,8 @@ public class Projectile : MonoBehaviour
     {
         if (other.gameObject.tag == "Boss")
         {
-            PlayerController.shotsFired++;
             bossManager = other.gameObject.GetComponent<BossManager>();
-            bossManager.TakeDamage(1);
+            bossManager.TakeDamage(10);
         }
 
         this.destroyed.Invoke();
