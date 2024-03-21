@@ -359,7 +359,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'THE LEADER OF THE ENEMIES HAS APPEARED
+  m_text: 'THE LEADER HAS APPEARED
 
 
     TAKE HIM DOWN.'
@@ -816,7 +816,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: UNDERSTOOD
+  m_text: GO
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f519588255abd3144806e93a9b6c592b, type: 2}
   m_sharedMaterial: {fileID: 3163925522532789286, guid: f519588255abd3144806e93a9b6c592b,

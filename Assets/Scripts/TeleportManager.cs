@@ -46,11 +46,13 @@ public class TeleportManager : MonoBehaviour
 
     public void GoToEndless()
     {
+        PlayerHealth.health = 3;
         SceneManager.LoadScene(5);
     }
 
     public void GoToEndless2P()
     {
+        PlayerHealth.health = 3;
         SceneManager.LoadScene(8);
     }
 
