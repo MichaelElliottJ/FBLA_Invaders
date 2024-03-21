@@ -8,6 +8,8 @@ public class Bomb : MonoBehaviour
 
     public GameObject explosion;
 
+    public AudioSource deathSound;
+
     public int destroyScore;
 
     void Update()
@@ -19,6 +21,7 @@ public class Bomb : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
+            deathSound.Play();
             Instantiate(explosion, transform.position, Quaternion.identity);
             ScoreManager.instance.score += destroyScore;
             Destroy(gameObject);

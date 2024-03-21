@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject fire;
 
+    public AudioSource fireAudio;
+
     public static int shotsFired;
 
     public static float speed = 5.0f;
@@ -17,11 +19,17 @@ public class PlayerController : MonoBehaviour
 
     public bool canMove = true;
 
+    public static float firerate = 0.25f;
+
+    float timer;
+
     public static bool moveUnlocked = false;
-    bool canUseMove = false;
+    public static bool canUseMove = false;
 
     private void Update()
     {
+        timer += Time.deltaTime;
+
         if (canMove)
         {
             if (Input.GetKey(KeyCode.LeftArrow))
@@ -51,13 +59,17 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKey(KeyCode.Space))
             {
-                Shoot();
+                if (timer >= firerate)
+                {
+                    Shoot();
+                    timer = 0;
+                }
             }
 
             if (shotsFired >= 20)
             {
                 canUseMove = true;
-                Debug.Log("faals");
+                Debug.Log("Move Ready");
             }
 
             if (Input.GetKey(KeyCode.V))
@@ -76,6 +88,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isProjectileActive)
         {
+            fireAudio.Play();
             Projectile projectile = Instantiate(this.bullet, this.transform.position, Quaternion.identity);
             projectile.destroyed += LaserDestroyed;
             isProjectileActive = true;

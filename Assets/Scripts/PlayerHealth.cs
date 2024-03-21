@@ -11,6 +11,8 @@ public class PlayerHealth : MonoBehaviour
     public GameObject healthImage2;
     public GameObject healthImage1;
 
+    public AudioSource playerHit;
+
     bool isInvincible;
 
     public SpriteRenderer playerRender;
@@ -58,12 +60,21 @@ public class PlayerHealth : MonoBehaviour
                 Destroy(collision.gameObject);
             }   
         }
+
+        if (collision.gameObject.tag == "Boss")
+        {
+            if (!isInvincible)
+            {
+                LoseHealth();
+            }
+        }
     }
 
     private void LoseHealth()
     {
         health--;
         isInvincible = true;
+        playerHit.Play();
         StartCoroutine("IFrames");
     }
 

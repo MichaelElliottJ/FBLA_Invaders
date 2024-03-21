@@ -25,11 +25,10 @@ public class ShopManager : MonoBehaviour
 
     public void Faster()
     {
-        if (ScoreManager.instance.score >= 500)
+        if (ScoreManager.instance.score >= 750)
         {
-            PlayerController.speed += 0.5f;
-            ScoreManager.instance.score -= 500;
-            Debug.Log(PlayerController.speed);
+            PlayerController.firerate -= 0.05f;
+            ScoreManager.instance.score -= 750;
         }
     }
 
