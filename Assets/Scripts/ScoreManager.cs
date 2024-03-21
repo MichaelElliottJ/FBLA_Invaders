@@ -21,12 +21,4 @@ public class ScoreManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
     }
-
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.P))
-        {
-            score += 1000000;
-        }
-    }
 }
