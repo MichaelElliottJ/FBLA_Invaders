@@ -11,9 +11,9 @@ TagManager:
   - Enemy
   - Start
   - End
-  - Fireball
   - Ultimate
   - Boss
+  - Laser
   layers:
   - Default
   - TransparentFX

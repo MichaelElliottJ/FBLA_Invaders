@@ -30,9 +30,13 @@ public class BossManager : MonoBehaviour
     public GameObject bulletFive;
 
     [Header("MOVE TWO")]
-    public GameObject fireball;
+    public GameObject leftLaser;
+    public GameObject rightLaser;
+
+    bool canShoot = true;
 
     int moveNumber;
+    int i;
 
     float timer = 0;
     float cooldown;
@@ -43,40 +47,48 @@ public class BossManager : MonoBehaviour
     }
 
     private void Update()
-    {
-        timer += Time.deltaTime;
-
+    { 
         if (PlayerController.moveUnlocked)
             ultIndicator.SetActive(true);
 
         if (health <= 0)
         {
+            StopAllCoroutines();
+            leftLaser.SetActive(false);
+            rightLaser.SetActive(false);
+
             StartCoroutine("Die");
+            rb.constraints = RigidbodyConstraints2D.FreezePosition;
         }
 
-        if (timer >= cooldown)
+        if (canShoot)
         {
-            GenerateRandomMove();
-            if (moveNumber == 1)
+            timer += Time.deltaTime;
+
+            if (timer >= cooldown)
             {
-                StartCoroutine("ShootMoveOne");
+                GenerateRandomMove();
+                if (moveNumber == 1)
+                {
+                    StartCoroutine("ShootMoveOne");
+                }
+                else if (moveNumber == 2)
+                {
+                    StartCoroutine("ShootMoveTwo");
+                }
+                timer = 0;
             }
-            else if (moveNumber == 2)
-            {
-                StartCoroutine("ShootMoveTwo");
-            }
-            timer = 0;
         }
     }
 
     void GenerateRandomMove()
     {
-        moveNumber = Random.Range(1, 2);
+        moveNumber = Random.Range(1, 3);
     }
 
     void RandomCooldown()
     {
-        cooldown = Random.Range(5, 15);
+        cooldown = Random.Range(5, 11);
     }
 
     public void TakeDamage(int damage)
@@ -87,10 +99,10 @@ public class BossManager : MonoBehaviour
 
     IEnumerator Die()
     {
+        canShoot = false;
+        deathSound.Play();
         bossAnim.SetBool("Death", true);
         end.SetActive(true);
-        ScoreManager.instance.score += 10000;
-        rb.constraints = RigidbodyConstraints2D.FreezePosition;
         yield return new WaitForSeconds(2);
         this.gameObject.SetActive(false);
     }
@@ -104,7 +116,7 @@ public class BossManager : MonoBehaviour
 
     IEnumerator ShootMoveOne()
     {
-        for (int i = 0; i < 4; i++)
+        for (i = 0; i < 4; i++)
         {
             GameObject moveOne = (GameObject)Instantiate(bulletOne);
             GameObject moveTwo = (GameObject)Instantiate(bulletTwo);
@@ -122,12 +134,20 @@ public class BossManager : MonoBehaviour
 
             yield return new WaitForSeconds(1.5f);
         }
+
+        i = 0;
     }
 
     IEnumerator ShootMoveTwo()
     {
-        GameObject moveTwo = (GameObject)Instantiate(fireball);
-        moveTwo.transform.position = shootPos.transform.position;
-        yield return null;
+        leftLaser.SetActive(true);
+        rightLaser.SetActive(true);
+        moveTwoSound.Play();
+
+        yield return new WaitForSeconds(cooldown);
+
+        leftLaser.SetActive(false);
+        rightLaser.SetActive(false);
+        moveTwoSound.Stop();
     }
 }

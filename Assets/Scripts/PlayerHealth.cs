@@ -45,7 +45,13 @@ public class PlayerHealth : MonoBehaviour
         }
         else if (health <= 0)
         {
-            SceneManager.LoadScene(6);
+            int currentScene = SceneManager.GetActiveScene().buildIndex;
+            if (currentScene == 5 || currentScene == 8)
+                SceneManager.LoadScene(9);
+            else
+            {
+                SceneManager.LoadScene(6);
+            }
             health = 3;
         }
     }
@@ -61,7 +67,7 @@ public class PlayerHealth : MonoBehaviour
             }   
         }
 
-        if (collision.gameObject.tag == "Boss")
+        if (collision.gameObject.tag == "Boss" || collision.gameObject.tag == "Laser")
         {
             if (!isInvincible)
             {

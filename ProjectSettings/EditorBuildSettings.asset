@@ -32,4 +32,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Endless 2P.unity
     guid: ff04872d7518a7f458b1ae76fd52e195
+  - enabled: 1
+    path: Assets/Scenes/Endless Lose.unity
+    guid: e41b21e76dcc114499406411ecab49e5
+  - enabled: 1
+    path: Assets/Scenes/LevelOneCutscene.unity
+    guid: af3ddcb89b58ba3448b47bf806d1883a
+  - enabled: 1
+    path: Assets/Scenes/LevelTwoCutscene.unity
+    guid: 536d3809fb7a47c4caaddaddfa2fdc17
   m_configObjects: {}

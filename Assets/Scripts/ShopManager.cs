@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
+    public AudioSource buySound;
+    public AudioSource cantBuySound;
+
     public void BuyOneLife()
     {
         if (ScoreManager.instance.score >= 1000)
         {
             PlayerHealth.health += 1;
             ScoreManager.instance.score -= 1000;
-            Debug.Log(PlayerHealth.health);
+            buySound.Play();
+        }
+        else
+        {
+            cantBuySound.Play();
         }
     }
 
@@ -20,6 +27,11 @@ public class ShopManager : MonoBehaviour
         {
             PlayerHealth.health = 3;
             ScoreManager.instance.score -= 1500;
+            buySound.Play();
+        }
+        else
+        {
+            cantBuySound.Play();
         }
     }
 
@@ -29,6 +41,11 @@ public class ShopManager : MonoBehaviour
         {
             PlayerController.firerate -= 0.05f;
             ScoreManager.instance.score -= 750;
+            buySound.Play();
+        }
+        else
+        {
+            cantBuySound.Play();
         }
     }
 
@@ -38,6 +55,11 @@ public class ShopManager : MonoBehaviour
         {
             PlayerController.moveUnlocked = true;
             ScoreManager.instance.score -= 2000;
+            buySound.Play();
+        }
+        else
+        {
+            cantBuySound.Play();
         }
     }
 }

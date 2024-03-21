@@ -17,12 +17,21 @@ public class Enemy : MonoBehaviour
 
     public int destroyScore;
 
+    float timer;
+    float firerate = 1.0f;
+
     private void Update()
     {
+        timer += Time.deltaTime;
+
         this.transform.position += Vector3.down * speed * Time.deltaTime;
 
         if (canShoot)
-            StartCoroutine("RepeatShot");
+            if (timer >= firerate)
+            {
+                Invoke("FireBullet", 0.0f);
+                timer = 0;
+            }
     }
 
     void FireBullet()
@@ -50,15 +59,6 @@ public class Enemy : MonoBehaviour
             Instantiate(explosion, transform.position, Quaternion.identity);
             ScoreManager.instance.score += destroyScore;
             Destroy(gameObject);
-        }
-    }
-
-    IEnumerator RepeatShot()
-    {
-        while (true)
-        {
-            Invoke("FireBullet", 0f);
-            yield return new WaitForSeconds(1f);
         }
     }
 }

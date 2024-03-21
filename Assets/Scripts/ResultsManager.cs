@@ -6,7 +6,7 @@ public class ResultsManager : MonoBehaviour
 {
     public GameObject results;
 
-    PlayerController playerController;
+    public AudioSource celebrationSound;
 
     private void Update()
     {
@@ -17,6 +17,7 @@ public class ResultsManager : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            celebrationSound.Play();
             Time.timeScale = 0.0f;
             results.SetActive(true);
         }

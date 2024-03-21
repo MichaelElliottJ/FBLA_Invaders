@@ -8,6 +8,8 @@ public class TeleportManager : MonoBehaviour
     public void GoToSelectScene()
     {
         SceneManager.LoadScene(1);
+        PlayerController.canUseMove = false;
+        ScoreManager.instance.score = 0;
     }
 
     public void GoToHelpScene()
@@ -21,10 +23,20 @@ public class TeleportManager : MonoBehaviour
         SceneManager.LoadScene(3);
     }
 
+    public void GoToLevelOneCutscene()
+    {
+        SceneManager.LoadScene(10);
+    }
+
     public void GoToLevelTwo()
     {
-        Time.timeScale = 1.0f;
         SceneManager.LoadScene(4);
+    }
+
+    public void GoToLevelTwoCutscene()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene(11);
     }
 
     public void GoBack()

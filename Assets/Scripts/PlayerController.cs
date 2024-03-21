@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public GameObject fire;
 
     public AudioSource fireAudio;
+    public AudioSource ultAudio;
 
     public static int shotsFired;
 
@@ -77,6 +78,7 @@ public class PlayerController : MonoBehaviour
                 if (moveUnlocked && canUseMove)
                 {
                     UltimateMove();
+                    ultAudio.Play();
                     canUseMove = false;
                     shotsFired = 0;
                 }

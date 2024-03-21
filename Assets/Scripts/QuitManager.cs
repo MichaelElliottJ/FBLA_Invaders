@@ -2,29 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreManager : MonoBehaviour
+public class QuitManager : MonoBehaviour
 {
-    public static ScoreManager instance;
+    public static QuitManager instance;
 
-    public int score = 0;
-
-    void Start()
+    private void Start()
     {
         if (instance == null)
         {
             instance = this;
         }
         else
+        {
             Destroy(gameObject);
+        }
 
         DontDestroyOnLoad(gameObject);
     }
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            score += 1000000;
+            Application.Quit();
+            Debug.Log("banana balls");
         }
     }
 }
